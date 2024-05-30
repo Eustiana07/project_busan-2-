@@ -1,3 +1,4 @@
+//2-1~2-4
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -5,28 +6,28 @@
 
 #define LEN_MIN 15
 #define LEN_MAX 50
-#define STM_MIN  0    // ¸¶µ¿¼®Ã¼·Â
+#define STM_MIN  0    // ë§ˆë™ì„ì²´ë ¥
 #define STM_MAX  5
 #define PROB_MIN 10   
 #define PROB_MAX 90
-#define AGGRO_MIN  0  // ¾î±×·Î¹üÀ§
+#define AGGRO_MIN  0  // ì–´ê·¸ë¡œë²”ìœ„
 #define AGGRO_MAX  5
 
-// ¸¶µ¿¼®ÀÌµ¿¹æÇâ
+// ë§ˆë™ì„ì´ë™ë°©í–¥
 #define MOVE_LEFT  1
 #define MOVE_STAY  0
 
-// Á»ºñÀÇ°ø°İ´ë»ó
+// ì¢€ë¹„ì˜ê³µê²©ëŒ€ìƒ
 #define ATK_NONE  0
 #define ATK_CITIZEN  1
 #define ATK_DONGSEOK  2
 
-// ¸¶µ¿¼® Çàµ¿
+// ë§ˆë™ì„ í–‰ë™
 #define ACTION_REST  0
 #define ACTION_PROVOKE  1
 #define ACTION_PULL  2
 
-//¾î±×·Î
+//ì–´ê·¸ë¡œ
 #define AGGRO_MIN 1
 #define AGGRO_MAX 5
 
@@ -34,9 +35,9 @@
 #define movement_MAX 1
 #define movement_MIN 0
 int main() {
-    // ÀÎÆ®·Î
-    printf("¿­Â÷ ±æÀÌ¿Í ½Ã¹Î°ú Á»ºñÀÇ ÀÌµ¿È®·üÀ» ÀÔ·ÂÇÏ¿© ½Ã¹ÎÀ» Å»Ãâ½ÃÅ°ÀÚ!\n");
-    // ¿­Â÷ ÃÊ±â »óÅÂ Ãâ·Â
+    // ì¸íŠ¸ë¡œ
+    printf("ì—´ì°¨ ê¸¸ì´ì™€ ì‹œë¯¼ê³¼ ì¢€ë¹„ì˜ ì´ë™í™•ë¥ ì„ ì…ë ¥í•˜ì—¬ ì‹œë¯¼ì„ íƒˆì¶œì‹œí‚¤ì!\n");
+    // ì—´ì°¨ ì´ˆê¸° ìƒíƒœ ì¶œë ¥
     int trainLength = 0, citizenIndex = 0, madongindex = 0;
     int p = 0;
     int madongseokstamina = -1;
@@ -54,7 +55,7 @@ int main() {
         scanf_s("%d", &p);
     }
     if (trainLength < LEN_MIN || trainLength > LEN_MAX || p < PROB_MIN || p > PROB_MAX) {
-        printf("Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.\n");
+        printf("ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.\n");
         exit(0);
     }
     madongindex = trainLength - 3;
@@ -74,46 +75,46 @@ int main() {
     printf("\n");
     printf("\n");
     printf("\n");
-    // ½Ã¹Î°ú Á»ºñÀÇ ÃÊ±â À§Ä¡ ¼³Á¤
+    // ì‹œë¯¼ê³¼ ì¢€ë¹„ì˜ ì´ˆê¸° ìœ„ì¹˜ ì„¤ì •
     citizenIndex = trainLength - 6;
     int zombieIndex = trainLength - 4;
 
-    int zombieMoveCount = 0; // Á»ºñÀÇ ÀÌµ¿ È½¼ö¸¦ Ä«¿îÆ®
+    int zombieMoveCount = 0; // ì¢€ë¹„ì˜ ì´ë™ íšŸìˆ˜ë¥¼ ì¹´ìš´íŠ¸
 
     while (1) {
-        // ½Ã¹Î ÀÌµ¿
+        // ì‹œë¯¼ ì´ë™
         int citizenMove = rand() % 100;
         if (citizenMove < (100 - p)) {
-            citizenIndex = (citizenIndex - 1 + trainLength) % trainLength; // ¿ŞÂÊÀ¸·Î ÀÌµ¿
+            citizenIndex = (citizenIndex - 1 + trainLength) % trainLength; // ì™¼ìª½ìœ¼ë¡œ ì´ë™
         }
-        //¾î±×·Î
+        //ì–´ê·¸ë¡œ
         if (Ciagro >= 5) {
             Ciagro = 5;
         }
         if (Maagro >= 5) {
             Maagro = 5;
         }
-        // Á»ºñ ÀÌµ¿
-        if (zombieMoveCount % 2 == 0) { // 2¹ø ÁÖ±â¸¶´Ù Á»ºñ ÀÌµ¿
+        // ì¢€ë¹„ ì´ë™
+        if (zombieMoveCount % 2 == 0) { // 2ë²ˆ ì£¼ê¸°ë§ˆë‹¤ ì¢€ë¹„ ì´ë™
             int zombieMove = rand() % 100;
             if (zombieMove < p) {
                 if (Ciagro >= Maagro) {
-                    zombieIndex = (zombieIndex - 1 + trainLength) % trainLength; // ¿ŞÂÊÀ¸·Î ÀÌµ¿
+                    zombieIndex = (zombieIndex - 1 + trainLength) % trainLength; // ì™¼ìª½ìœ¼ë¡œ ì´ë™
                 }
                 if (Ciagro < Maagro) {
-                    zombieIndex = (zombieIndex + 1 + trainLength) % trainLength; // ¿ŞÂÊÀ¸·Î ÀÌµ¿
+                    zombieIndex = (zombieIndex + 1 + trainLength) % trainLength; // ì™¼ìª½ìœ¼ë¡œ ì´ë™
                 }
             }
 
         }
 
-        // ¿­Â÷ »óÅÂ Ãâ·Â
+        // ì—´ì°¨ ìƒíƒœ ì¶œë ¥
         for (int i = 0; i < trainLength; i++) {
             printf("#");
         }
         printf("\n#");
 
-        // ½Ã¹Î, Á»ºñ »óÅÂ Ãâ·Â
+        // ì‹œë¯¼, ì¢€ë¹„ ìƒíƒœ ì¶œë ¥
         for (int i = 0; i < trainLength; i++) {
             if (i == citizenIndex) {
                 printf("C");
@@ -164,7 +165,7 @@ int main() {
             printf("madongseok: stay %d\n\n", madongindex);
             Maagro--;
         }
-        //¾î±×·Î
+        //ì–´ê·¸ë¡œ
         if (Ciagro >= 5) {
             Ciagro = 5;
         }
@@ -228,18 +229,18 @@ int main() {
                 }
             }
         }
-        //¾î±×·Î
+        //ì–´ê·¸ë¡œ
         if (Ciagro >= 5) {
             Ciagro = 5;
         }
         if (Maagro >= 5) {
             Maagro = 5;
         }
-        // Á»ºñ ÀÌµ¿ È½¼ö Áõ°¡
+        // ì¢€ë¹„ ì´ë™ íšŸìˆ˜ ì¦ê°€
         zombieMoveCount++;
     }
 
-    // ¾Æ¿ôÆ®·Î
+    // ì•„ì›ƒíŠ¸ë¡œ
 
     return 0;
 }
